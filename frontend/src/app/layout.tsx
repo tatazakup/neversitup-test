@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { TanstackProvider } from "@/providers/TanstackProvider";
 import "./globals.css";
+import { UserProvider } from "@/providers/UserProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <TanstackProvider>
+          <UserProvider>{children}</UserProvider>
+        </TanstackProvider>
+      </body>
     </html>
   );
 }
